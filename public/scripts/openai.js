@@ -236,6 +236,7 @@ export const reasoning_effort_types = {
     low: 'low',
     medium: 'medium',
     high: 'high',
+    xhigh: 'xhigh',
     min: 'min',
     max: 'max',
 };
@@ -2477,6 +2478,8 @@ function getReasoningEffort(settings = null, model = null) {
                 return [chat_completion_sources.OPENAI, chat_completion_sources.AZURE_OPENAI].includes(settings.chat_completion_source) && /^gpt-5/.test(model)
                     ? reasoning_effort_types.min
                     : reasoning_effort_types.low;
+            case reasoning_effort_types.xhigh:
+                return reasoning_effort_types.high;
             case reasoning_effort_types.max:
                 return reasoning_effort_types.high;
             default:
